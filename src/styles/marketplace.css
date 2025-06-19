@@ -1,0 +1,53 @@
+.marketplace-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.marketplace-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.marketplace-header h1 {
+  font-size: 2rem;
+  color: #222;
+}
+
+.racecoin-balance {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.get-coin-button {
+  background: #1e90ff;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.get-coin-button:hover {
+  background: #005bb5;
+}
+
+.message-box {
+  text-align: center;
+  margin-top: 1rem;
+  color: green;
+  font-weight: bold;
+}
+
+.marketplace-footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: #555;
+  font-size: 0.9rem;
+}
