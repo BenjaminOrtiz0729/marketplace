@@ -1,30 +1,59 @@
-import React, { useEffect, useState } from 'react';
-import '../styles/Marketplace.css';
-import { getUser, loginGuest, getBalance, setBalance } from '../services/userService';
+import axios from 'axios';
+import React, { useState, useEffect, useInsertionEffect } from 'react';
+import { getLocalUser, setLocalUser } from '../services/userService';
+//import { getCloudBalance, setCloudBalance } from '../services/firestoreService';
 
-export default function Marketplace() {
+export default function Marketplace({ onLogout }) {
   const [user, setUser] = useState(null);
-  const [raceCoinBalance, setRaceCoinBalance] = useState(null);
+  const [balance, setBalance] = useState(0);
+  const [rewarded, setReward] = useState(false);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    let currentUser = getUser();
-    if (!currentUser) {
-      currentUser = loginGuest();
-    }
-    setUser(currentUser);
-    setRaceCoinBalance(getBalance(currentUser.username));
+    const currUser = getLocalUser();
+    setUser(currUser);
+    setReward(currUser.is_reward);
+    setBalance(currUser.balance);
   }, []);
 
-  const handleGetFreeCoin = () => {
+  useEffect(() => {    
+    const currentUser = getLocalUser();
+    currentUser.balance = balance;
+    currentUser.is_reward = rewarded;
+    setLocalUser(currentUser);
+    setUser(currentUser);
+  }, [balance, rewarded]);
+
+  const handleGetFreeCoin = async () => {
     if (!user) return;
-    if (raceCoinBalance > 0) {
-      setMessage('You already have RaceCoins.');
-    } else {
-      setBalance(user.username, 100);
-      setRaceCoinBalance(100);
-      setMessage('You received 100 RaceCoins! Enjoy the race!');
-    }
+    
+    let ret = await axios.post(`http://racingcar-backend.onrender.com/api/user/getReward/${user.username}`);
+    
+    if(ret.status == 200){
+      if (ret.data.is_reward == true) {
+        setMessage('You already have RaceCoins.');
+      } else {
+        
+        const response = await axios.post(`http://racingcar-backend.onrender.com/api/user/getBalance/${user.username}`);
+        if(response.status == 200){
+          
+          const bal = response.data.balance + 100;             
+          setBalance(bal);
+          
+          ret = await axios.post('http://racingcar-backend.onrender.com/api/user/setBalance', {
+            username : user.username,
+            balance : bal
+          });
+
+          if(ret.status == 200)
+            setReward(true);
+
+          setMessage('You received 100 RaceCoins! Enjoy the race!');
+        }          
+      }
+    }else{
+      setMessage('Sorry Please try again later');
+    }  
   };
 
   return (
@@ -32,13 +61,17 @@ export default function Marketplace() {
       <header className="marketplace-header">
         <h1>🏁 RaceCoin Marketplace</h1>
         <p>Welcome <strong>{user?.username}</strong>! RaceCoins are used to join races, upgrade your car, and place bets.</p>
+        {/* 🔒 Logout Button */}
+        <button className="logout-button" onClick={onLogout}>
+          🔒 Logout
+        </button>
       </header>
 
       <div className="racecoin-balance">
-        <h2>Your Balance: {raceCoinBalance ?? 'Loading...'} RSC</h2>
+        <h2>Your Balance: {user?.balance} RSC</h2>
       </div>
 
-      {raceCoinBalance === 0 && (
+      {balance === 0 && (
         <div className="get-coin-section">
           <button className="get-coin-button" onClick={handleGetFreeCoin}>
             🎁 Get Free RaceCoins

@@ -1,0 +1,97 @@
+.register-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+  }
+  
+  .register-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 40px 30px;
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .register-title {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .name-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .register-label {
+    text-align: left;
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .register-input {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1.5px solid #ccc;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .register-input:focus {
+    border-color: #667eea;
+  }
+  
+  .register-message {
+    color: crimson;
+    font-size: 13px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  
+  .register-button {
+    background-color: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .register-button:hover:not(:disabled) {
+    background-color: #5563c1;
+  }
+  
+  .register-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  
+  .footer-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #444;
+  }
+  
+  .switch-button {
+    font-weight: 600;
+  }
+  

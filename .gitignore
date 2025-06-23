@@ -1,0 +1,4 @@
+node_modules/
+
+#os generated
+package-lock.json

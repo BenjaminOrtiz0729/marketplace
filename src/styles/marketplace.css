@@ -1,11 +1,11 @@
 .marketplace-container {
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
-  font-family: Arial, sans-serif;
-  background: #fefefe;
+  font-family: sans-serif;
+  background: #fdfdfd;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
 }
 
 .marketplace-header {
@@ -25,7 +25,7 @@
 }
 
 .get-coin-button {
-  background: #1e90ff;
+  background: #007bff;
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -35,7 +35,7 @@
 }
 
 .get-coin-button:hover {
-  background: #005bb5;
+  background: #0056b3;
 }
 
 .message-box {
@@ -48,6 +48,6 @@
 .marketplace-footer {
   margin-top: 3rem;
   text-align: center;
-  color: #555;
+  color: #666;
   font-size: 0.9rem;
 }
