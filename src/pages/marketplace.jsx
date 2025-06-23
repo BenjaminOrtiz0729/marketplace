@@ -1,7 +1,6 @@
 import axios from 'axios';
-import React, { useState, useEffect, useInsertionEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getLocalUser, setLocalUser } from '../services/userService';
-//import { getCloudBalance, setCloudBalance } from '../services/firestoreService';
 
 export default function Marketplace({ onLogout }) {
   const [user, setUser] = useState(null);

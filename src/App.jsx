@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Marketplace from './pages/Marketplace';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
+import Marketplace from './pages/Marketplace.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
 import { getLocalUser } from './services/userService';
 import { auth } from './firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
