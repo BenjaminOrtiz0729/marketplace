@@ -1,4 +1,5 @@
 node_modules/
+build/
 
 #os generated
 package-lock.json

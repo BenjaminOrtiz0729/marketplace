@@ -26,20 +26,20 @@ export default function Marketplace({ onLogout }) {
   const handleGetFreeCoin = async () => {
     if (!user) return;
     
-    let ret = await axios.post(`http://racingcar-backend.onrender.com/api/user/getReward/${user.username}`);
+    let ret = await axios.post(`https://racingcar-backend.onrender.com/api/user/getReward/${user.username}`);
     
     if(ret.status == 200){
       if (ret.data.is_reward == true) {
         setMessage('You already have RaceCoins.');
       } else {
         
-        const response = await axios.post(`http://racingcar-backend.onrender.com/api/user/getBalance/${user.username}`);
+        const response = await axios.post(`https://racingcar-backend.onrender.com/api/user/getBalance/${user.username}`);
         if(response.status == 200){
           
           const bal = response.data.balance + 100;             
           setBalance(bal);
           
-          ret = await axios.post('http://racingcar-backend.onrender.com/api/user/setBalance', {
+          ret = await axios.post('https://racingcar-backend.onrender.com/api/user/setBalance', {
             username : user.username,
             balance : bal
           });

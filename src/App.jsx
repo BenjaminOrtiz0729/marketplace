@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Marketplace from '../src/pages/Marketplace';
-import RegisterPage from '../src/pages/RegisterPage';
-import LoginPage from '../src/pages/LoginPage';
+import Marketplace from './pages/Marketplace';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 import { getLocalUser } from './services/userService';
 import { auth } from './firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -14,6 +14,19 @@ function App() {
   useEffect(() => {
     const storedUser = getLocalUser();
     if (storedUser) setUser(storedUser);
+  }, []);
+
+  useEffect(() => {
+    const handleUnload = () => {
+      setUser(null);
+      localStorage.removeItem('user'); // optional: clear saved user
+    };
+  
+    window.addEventListener('beforeunload', handleUnload);
+  
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+    };
   }, []);
 
   const handleLogout = () => {

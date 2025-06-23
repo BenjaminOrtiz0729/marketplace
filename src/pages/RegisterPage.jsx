@@ -24,7 +24,7 @@ export default function RegisterPage({ onRegisterSuccess, onSwitchToLogin }) {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/user/send-code', { email });
+      await axios.post('https://racingcar-backend.onrender.com/api/user/send-code', { email });
       setMessage('Verification code sent! Check your Gmail.');
       setCodeSent(true);
     } catch (error) {
